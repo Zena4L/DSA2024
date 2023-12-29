@@ -1,24 +1,26 @@
-package org.example.linkedlist;
+package org.example.doublylinkedlist;
 
-public class LinkedList {
+public class DoublyLinkedList {
+
     private Node head;
     private Node tail;
     private int length;
 
-    class Node {
-        int value;
-        Node next;
-
-        Node(int value){
-            this.value = value;
-        }
-    }
-
-    public LinkedList(int value){
+    public DoublyLinkedList(int value){
         Node newNode = new Node(value);
         head = newNode;
         tail = newNode;
         length = 1;
+    }
+
+    class Node{
+        int value;
+        Node next;
+        Node prev;
+
+        public Node(int value){
+            this.value = value;
+        }
     }
 
     public void printList(){
@@ -26,49 +28,44 @@ public class LinkedList {
         while (temp != null){
             System.out.println(temp.value);
             temp = temp.next;
-
         }
     }
 
     public void append(int value){
-        Node newNode = new Node(value);
+        var newNode = new Node(value);
         if(length == 0){
             head = newNode;
             tail = newNode;
         }else {
             tail.next = newNode;
-            tail=newNode;
+            newNode.prev = tail;
+            tail = newNode;
         }
         length++;
     }
 
     public Node removeLast(){
-        if(length == 0) return null;
-        Node temp = head;
-        Node pre = head;
-
-        while (temp.next != null){
-            pre = temp;
-            temp = temp.next;
-        }
-        tail = pre;
-        tail.next = null;
-        length --;
-
-        if(length == 0 ){
-            tail = null;
+        if(length == 0 ) return null;
+        Node temp = tail;
+        if (length == 1){
             head = null;
+            tail = null;
+        }else {
+            tail = tail.prev;
+            tail.next = null;
+            tail.prev = null;
         }
+        length --;
         return temp;
     }
-
     public void prepend(int value){
-        Node newNode = new Node(value);
+        var newNode = new Node(value);
         if(length == 0){
             head = newNode;
             tail = newNode;
         }else {
             newNode.next = head;
+            head.prev = newNode;
             head = newNode;
         }
         length++;
@@ -77,13 +74,15 @@ public class LinkedList {
     public Node removeFirst(){
         if(length == 0) return null;
         Node temp = head;
-        head = head.next;
-        temp.next = null;
-        length--;
-
-        if (length == 0){
+        if(length == 1){
+            head = null;
             tail = null;
+        }else {
+            head = head.next;
+            head.prev = null;
+            temp.next = null;
         }
+        length--;
         return temp;
     }
 }
