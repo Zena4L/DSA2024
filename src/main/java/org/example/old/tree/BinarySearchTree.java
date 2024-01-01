@@ -1,4 +1,4 @@
-package org.example.tree;
+package org.example.old.tree;
 
 public class BinarySearchTree {
     private Node root;

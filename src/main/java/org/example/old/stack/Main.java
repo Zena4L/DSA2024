@@ -1,4 +1,4 @@
-package org.example.stack;
+package org.example.old.stack;
 
 public class Main {
     public static void main(String[] args) {

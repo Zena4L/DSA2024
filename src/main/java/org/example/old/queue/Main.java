@@ -1,4 +1,4 @@
-package org.example.queue;
+package org.example.old.queue;
 
 public class Main {
     public static void main(String[] args) {

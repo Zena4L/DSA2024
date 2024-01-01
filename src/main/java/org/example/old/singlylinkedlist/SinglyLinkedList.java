@@ -1,4 +1,4 @@
-package org.example.singlylinkedlist;
+package org.example.old.singlylinkedlist;
 
 public class SinglyLinkedList {
     private Node head;
